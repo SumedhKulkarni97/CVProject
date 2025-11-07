@@ -1,0 +1,1 @@
+This project is for gaining knowledge in the field of computer vision using Python opencv library
