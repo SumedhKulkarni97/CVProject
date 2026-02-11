@@ -59,7 +59,7 @@ def detect_lanes(img_folder):
     plt.title("4. Refined Lane Edges (ROI Applied)")
     plt.axis('off')
 
-    plt.suptitle("Step 4: ROI-Based Edge Detection for Lane Finding", fontsize=18)
+    plt.suptitle("ROI-Based Edge Detection for Lane Finding", fontsize=18)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     plt.show()
 
