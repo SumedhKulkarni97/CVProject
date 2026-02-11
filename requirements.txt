@@ -1,3 +1,6 @@
+os
 numpy
+random
 opencv-python
 pywavelets
+matplotlib
