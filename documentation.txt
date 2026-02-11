@@ -26,7 +26,7 @@ This project is an end-to-end pipeline that chains the following techniques, ful
 ## 3. Tech Stack
 
 * Python 3.10+
-* OpenCV (`opencv-python`)**: For all core CV operations (Canny, morphology, feature detection, DNN module).
+* OpenCV (`opencv-python`): For all core CV operations (Canny, morphology, feature detection, etc).
 * NumPy: For numerical operations and image array manipulation.
 * PyWavelets (`pywt`): (Optional) For the image decomposition step.
 * A Pre-trained Model:
@@ -43,10 +43,10 @@ The project operates as a multi-stage data-flow. Each step processes the output 
 2.  Clean: Apply a Gaussian Blur and morphological 'Opening' to the frame to reduce noise. (Non-linear Operator)
 3.  Segment: Feed the clean frame into the Semantic Segmentation model. This produces a "mask" image showing the drivable road area. (Semantic Segmentation)
 4.  Find Lanes: Create a Region of Interest (ROI) from the "road" mask. Apply Canny (Edge Detection) inside this ROI to find lane lines.
-5.  Find Objects: Feed the *original* clean frame into the YOLO object detector. This produces a list of bounding boxes `[x, y, w, h]` for all cars, pedestrians, etc. (Object Detection)
+5.  Find Objects: Feed the original clean frame into the YOLO object detector. This produces a list of bounding boxes `[x, y, w, h]` for all cars, pedestrians, etc. (Object Detection)
 6.  Analyze Objects (Loop): For each bounding box found:
     a.  Isolate: Crop the main frame to this bounding box (this is the object's patch).
-    b.  Find Corners: Run the Shi-Tomasi **(Corner Detection)** algorithm on the patch to find keypoints.
+    b.  Find Corners: Run the Shi-Tomasi (Corner Detection) algorithm on the patch to find keypoints.
     c.  Decompose: (Optional) Apply a wavelet transform (Image Decomposition) to the patch to get a feature hash.
     d.  Identify: Feed the patch (or its decomposed features) into a classifier to get a detailed label (e.g., 'SUV', 'Sedan'). (Classification)
 7.  Visualize: Draw the segmentation mask, lane lines, bounding boxes, and keypoints all onto the original frame.
