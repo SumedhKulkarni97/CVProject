@@ -56,3 +56,19 @@ The project operates as a multi-stage data-flow. Each step processes the output 
 
 For testing and training:
 KITTI Dataset : The gold standard for ADAS research.
+
+1. KITTI-Lite (Shuffled Subset)
+Purpose: Optimized for training and testing static object detection models (YOLO, SSD).
+Structure: A "flat" collection of independent images (e.g., 000000.png, 000001.png).
+Temporal Logic: None. These images are typically sampled from different drives, locations, and times.
+Best Use Case:  Training YOLO to recognize "Car" vs. "Pedestrian" in diverse environments.
+Testing Wavelet-based feature extraction on various textures.
+Limitation: It is impossible to run Optical Flow or Velocity Estimation because there is no continuity between Frame A and Frame B.
+
+2. KITTI Raw (Sequential/Synced Data)
+Purpose: Designed for temporal analysis, motion tracking, and autonomous navigation.
+Structure: Images are organized into "Drives" (e.g., 2011_09_26_drive_0020_sync) and sub-cameras (e.g., image_02).
+Temporal Logic: High. Images are recorded at a constant frequency (approx. 10 frames per second), meaning each frame is strictly 0.1 seconds apart.
+Best Use Case:
+    Optical Flow: Calculating how pixels shift between t and t+1.
+    Velocity Estimation: Using the timestamps.txt file to calculate real-world speed (km/h).

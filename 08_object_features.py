@@ -16,6 +16,12 @@ CONCEPTS:
 def extract_object_features(img_folder):
     # 1. Load Model and Image
     model = YOLO('yolov8s.pt') 
+    """
+    To resolve the detection errors observed, I upgraded from YOLOv8n to YOLOv8s. 
+        (YOLOv8n - nano, high speed, low resource usage, lightweight. YOLOv8s - small, balanced speed, higher precision, more complex.)
+    This increased the model's parameter count, allowing for better feature extraction in complex environments. 
+    Additionally, tuning the confidence threshold to 0.3 ensured that vehicles with lower contrast were successfully captured while maintaining real-time performance.
+    """
     all_imgs = [f for f in os.listdir(img_folder) if f.endswith('.png')]
     img_path = os.path.join(img_folder, random.choice(all_imgs))
     img_bgr = cv2.imread(img_path)
